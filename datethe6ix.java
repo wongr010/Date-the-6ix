@@ -21,6 +21,7 @@ public class datethe6ix{
 		}
 		connection.setRequestProperty("client_id", "737721599747740");
 		connection.setRequestProperty("redirect_uri", "http://www.internest.ca");
+		connection.setRequestProperty("response_type", "token");
 		try{
 			InputStream response=connection.getInputStream();
 				try (Scanner scanner=new Scanner(response)){
