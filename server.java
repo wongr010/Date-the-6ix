@@ -1,32 +1,83 @@
-//package com.stackoverflow.q3732109;
-
+//package com.opencsv;
 import java.io.IOException;
+import java.io.File;
+import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.InetSocketAddress;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.util.Scanner;
+import java.io.FileWriter;
+import org.json.*;
+//import org.apache.commons.io.FileUtils;
+import java.io.BufferedReader;
+import java.io.*;
+import java.io.BufferedWriter;
+/*public class server {
 
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpServer;
+        public static void main(String[] args){
+        String write="final.csv";
+        String read="json.csv";
+        FileWriter writer=new FileWriter(write, true);
+        String cvsSplitBy = ",";
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
 
-public class server {
+            while ((line = br.readLine()) != null) {
 
-     static class MyHandler implements HttpHandler {
-        @Override
-        public void handle(HttpExchange t) throws IOException {
-            String response = "This is the response";
-            t.sendResponseHeaders(200, response.length());
-            OutputStream os = t.getResponseBody();
-            os.write(response.getBytes());
-            os.close();
+                // use comma as separator
+                String[] row = line.split(cvsSplitBy);
+
+
+                
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-        server.createContext("/test", new MyHandler());
-        server.start();
+}*/
+public class server{
+    public static void main(String[] args){
+        BufferedReader br=null;
+        BufferedWriter bw=null;
+        final String lineSep=System.getProperty("line.separator");
+
+        try {
+            File file = new File("json.csv");
+        File file2 = new File("app.csv");//so the
+                    //names don't conflict or just use different folders
+
+        br = new BufferedReader(new InputStreamReader(new FileInputStream(file))) ;
+        bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file2)));
+        String line = null;
+        int i=0;
+        for ( line = br.readLine(); line != null; line = br.readLine(),i++)
+        {               
+
+            String addedColumn = "noo";
+            bw.write(line+","+addedColumn+lineSep);
+        }
+
+    }catch(Exception e){
+        System.out.println(e);
+    }finally  {
+        if(br!=null)
+            try{
+            br.close();
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
+        if(bw!=null)
+            try{
+            bw.close();
+        }catch(IOException e){
+            System.out.println(e);
+        }
     }
 
-   
-
+}
 }
