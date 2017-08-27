@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.io.File;
 import java.io.InputStream;
@@ -44,7 +43,7 @@ public class datethe6ix{
 					JSONObject newobj=(JSONObject) resobj.optJSONObject("data");
 					
 					url=newobj.getString("url");
-					System.out.println(url);
+					
 					/* JSONObject img = array.getJSONObject(0);
 					 System.out.println(img);
 					 url=img.getString("url");*/
@@ -115,9 +114,14 @@ public class datethe6ix{
 
 
 	public static void main(String [] args){
-		String url="https://graph.facebook.com/search?q=music&type=event&access_token=EAACEdEose0cBAEvdBAxnLBqZCZBifou1gRCw6ewZCVGoW2ESlFdJRge0ota62GBfDHCJXYTRjMWAjtZBPCUlLZBhqQAA3QmrJDOfjaGZBeZBV7yhUz2jgDfWLaimorvtkDEFDcfWjZCubjJZAByBTZAzFfqOMhFWjROmSAeN3vVDBBJrgRDEVX4hI3OGOo8HDb5yxChxQyUrDdSQZDZD";
-		ArrayList<String> urllist=new ArrayList<String>();
-		URLConnection connection=null;
+		  String access_token="EAACEdEose0cBAAN3HIti1nPw15RuH7bOJDduVN3Cjt2f29fpU4nexzwVNFWvjlVc5myXFwNZAQKQJzS2m5YYjw96wEiZCCEwAfIrlZAC2lJWa45RyUXXomtS3p5p01tq1OZB9VLdZBan0HgATQcGqbjAzGZCxY6dywesIsmvsvHPJ7JpIqYStQXz6ue2yZCjamDWttfVRGUZAgZDZD";
+            Scanner input = new Scanner(System.in);
+            System.out.println("What are you interested in: ");
+            String interest = input.nextLine();
+            String location="Denver";
+            String url="https://graph.facebook.com/search?q="+interest+"&type=event&limit=60&access_token="+access_token;
+            ArrayList<String> urllist=new ArrayList<String>();
+            URLConnection connection=null;
 		try{
 			connection=new URL(url).openConnection();
 		}catch(IOException e){
