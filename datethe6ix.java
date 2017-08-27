@@ -152,7 +152,7 @@ public class datethe6ix{
 					File file=new File("json.csv");
 					String csv=CDL.toString(doc);
 					FileUtils.writeStringToFile(file, csv);
-					column();
+					column(urllist);
 					
 					//System.out.println(resobj);
 				}
