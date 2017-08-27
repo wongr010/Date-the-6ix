@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
@@ -9,14 +10,16 @@ import java.net.URLEncoder;
 import java.util.Scanner;
 import java.io.FileWriter;
 import org.json.*;
+import org.apache.commons.io.FileUtils;
+
 
 //javac -cp /usr/share/java/json-20160212.jar JsonParser.java
-// java -cp ".;java-json.jar" datethe6ix
+// java -cp ".;java-json.jar;commons-io-2.5.jar;commons-io-2.5-javadoc.jar" datethe6ix
 
 //access token: 737721599747740|qANITqJEuZ7d-0pFTjEtznP9Sjc
 public class datethe6ix{
 	public static void main(String[] args){
-		String url="https://graph.facebook.com/search?q=music&type=event&access_token=EAACEdEose0cBAPuXnTbZCRmmuGcKfZB8GjhEuuqRIF1a4AE0LIlYBOnbZBwubbZAE2MvIx9YdcpZBQqs7KuwZCXqMZBZCZBO9AzfWVM3LTr1rFMQC2K7OdqKDpnwjL1lDgBEWhmzsHlNlU37YzL94JsIzQZCYjruwshxjwRZCEjl6xkZAJwfFvrUyNe9IjUVf13yluTRTXun0TDZCXQZDZD";
+		String url="https://graph.facebook.com/search?q=music&type=event&access_token=EAACEdEose0cBADMlChbQ3fmZAZCMde67PZCQdyCVYZA2ZBkGyZBocOAYDjJx4ozfCyXODdN1LqPiMChBTvL5mKe3l228zDZAZBpAEbyacGsTB2ZCAHkUkUzpXkIw6ezuxiQqtfqKo8Yn0k5l0pZCQDHU3TAeDLiiF1Yapt0iqH8PqOZCtbHwoZAQQHA3yuZBrXr5G2UZAcHaNpxYDyhAZDZD";
 		URLConnection connection=null;
 		
 		try{
@@ -35,9 +38,16 @@ public class datethe6ix{
 				JSONObject resobj=null;
 				try{
 					resobj=new JSONObject(responseBody);
+					JSONArray doc=resobj.getJSONArray("data");
+					File file=new File("json.csv");
+					String csv=CDL.toString(doc);
+					FileUtils.writeStringToFile(file, csv);
 					//System.out.println(resobj);
 				}
 				catch(JSONException e){
+					System.out.println(e);
+				}
+				catch(IOException e){
 					System.out.println(e);
 				}
 
