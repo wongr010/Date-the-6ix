@@ -21,7 +21,7 @@ import javax.json.*;
 //AIzaSyCP2W_hVwZWzFl-_mZw7e6JUUH8KfWay0c
 
 //access token: 737721599747740|qANITqJEuZ7d-0pFTjEtznP9Sjc
-public class datethe6ix{
+public class CSVUtils{
     public static String photo(String link){
         //System.out.println(link);
         String url=null;
@@ -107,7 +107,7 @@ public class datethe6ix{
 
 
         public static void main(String [] args){
-            String access_token="EAACEdEose0cBAEvdBAxnLBqZCZBifou1gRCw6ewZCVGoW2ESlFdJRge0ota62GBfDHCJXYTRjMWAjtZBPCUlLZBhqQAA3QmrJDOfjaGZBeZBV7yhUz2jgDfWLaimorvtkDEFDcfWjZCubjJZAByBTZAzFfqOMhFWjROmSAeN3vVDBBJrgRDEVX4hI3OGOo8HDb5yxChxQyUrDdSQZDZD";
+            String access_token="EAACEdEose0cBAAN3HIti1nPw15RuH7bOJDduVN3Cjt2f29fpU4nexzwVNFWvjlVc5myXFwNZAQKQJzS2m5YYjw96wEiZCCEwAfIrlZAC2lJWa45RyUXXomtS3p5p01tq1OZB9VLdZBan0HgATQcGqbjAzGZCxY6dywesIsmvsvHPJ7JpIqYStQXz6ue2yZCjamDWttfVRGUZAgZDZD";
 
             Scanner input = new Scanner(System.in);
             System.out.println("What are you interested in: ");
@@ -142,22 +142,22 @@ public class datethe6ix{
                             JSONObject one=doc.getJSONObject(i);
                             String id=one.getString("id");
                             JSONObject place=(JSONObject) one.optJSONObject("place");
-                            String city, country;
-                            try{
-                            city=place.getString("city");
-                            country=place.getString("country");
-                        }
-                        catch(Exception e){
-                            continue;
-                        }
-                            if (!city.equals(null) && !country.equals(null)){
-                                
-                                closest.put(j, one);
-                                j++;
-                            }
+                            
+
                             String pic="https://graph.facebook.com/"+id+"/picture?redirect=0";
                             String link=photo(pic);
                             urllist.add(link);
+
+                            boolean ci, co;
+                            ci=place.has("city");
+                            co=place.has("country");
+
+                            if(ci && co) {
+                                closest.put(j, one);
+                                j++;
+                                System.out.println(one);
+                            }
+                           
 
                         //System.out.println(link);
                         }

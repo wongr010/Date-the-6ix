@@ -40,9 +40,16 @@ public class datethe6ix{
 				try{
 					resobj=new JSONObject(responseBody);
 
-					JSONObject newobj=(JSONObject) resobj.optJSONObject("data");
+					JSONObject newobj=(JSONObject) resobj.optJSONObject("cover");
+					//System.out.println(newobj);
 					
-					url=newobj.getString("url");
+					try{
+						url=newobj.getString("source");
+					}
+					catch(NullPointerException e){
+						return " ";
+					}
+					System.out.println(url);
 					
 					/* JSONObject img = array.getJSONObject(0);
 					 System.out.println(img);
@@ -115,6 +122,7 @@ public class datethe6ix{
 
 	public static void main(String [] args){
 		  String access_token="EAACEdEose0cBAAN3HIti1nPw15RuH7bOJDduVN3Cjt2f29fpU4nexzwVNFWvjlVc5myXFwNZAQKQJzS2m5YYjw96wEiZCCEwAfIrlZAC2lJWa45RyUXXomtS3p5p01tq1OZB9VLdZBan0HgATQcGqbjAzGZCxY6dywesIsmvsvHPJ7JpIqYStQXz6ue2yZCjamDWttfVRGUZAgZDZD";
+            
             Scanner input = new Scanner(System.in);
             System.out.println("What are you interested in: ");
             String interest = input.nextLine();
@@ -144,9 +152,10 @@ public class datethe6ix{
 					
 
 					for (int i=0; i<doc.length(); ++i){
+						System.out.println(i);
 						JSONObject one=doc.getJSONObject(i);
 						String id=one.getString("id");
-						String pic="https://graph.facebook.com/"+id+"/picture?redirect=0";
+						String pic="https://graph.facebook.com/"+id+"?fields=cover&access_token="+access_token;
 						String link=photo(pic);
 						urllist.add(link);
 
