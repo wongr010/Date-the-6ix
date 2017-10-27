@@ -11,34 +11,10 @@ import java.net.URLEncoder;
 import java.util.Scanner;
 import java.io.FileWriter;
 import org.json.*;
-//import org.apache.commons.io.FileUtils;
 import java.io.BufferedReader;
 import java.io.*;
 import java.io.BufferedWriter;
-/*public class server {
 
-        public static void main(String[] args){
-        String write="final.csv";
-        String read="json.csv";
-        FileWriter writer=new FileWriter(write, true);
-        String cvsSplitBy = ",";
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-
-            while ((line = br.readLine()) != null) {
-
-                // use comma as separator
-                String[] row = line.split(cvsSplitBy);
-
-
-                
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-}*/
 public class server{
     public static void main(String[] args){
         BufferedReader br=null;
